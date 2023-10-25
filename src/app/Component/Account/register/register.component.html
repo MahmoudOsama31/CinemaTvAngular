@@ -1,0 +1,50 @@
+<div class="container mt-4 mb-4">
+  <div>
+    <h5>Register</h5>
+  </div>
+  <hr>
+<form [formGroup]="userForm" (ngSubmit)="Register()">
+    <div class="form-group m-3">
+        <label for="username">User Name</label>
+        <input type="text" name="username" formControlName="userName" class="form-control m-1" id="username" placeholder="Enter User Name">
+        <div class="alert alert-warning" *ngIf="!this.userForm.get('userName')?.value &&this.userForm.get('userName')?.touched">
+          required
+        </div>
+      </div>
+    <div class="form-group m-3">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" name="exampleInputEmail1" formControlName="email" class="form-control m-1" id="exampleInputEmail1" placeholder="Enter email">
+      <div class="alert alert-warning" *ngIf="!this.userForm.get('email')?.value &&this.userForm.get('email')?.touched">
+        required
+      </div>
+    </div>
+    <div class="form-group m-3">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" name="exampleInputPassword1" formControlName="password" class="form-control m-1" id="exampleInputPassword1" placeholder="Password">
+      <div class="alert alert-warning" *ngIf="this.userForm.get('password')?.errors &&this.userForm.get('password')?.touched">
+        required
+      </div>
+    </div>
+    <div class="form-group m-3">
+      <label for="ConfirmPassword">Confirm Password</label>
+      <input type="password" name="ConfirmPassword" formControlName="confirmPassword" class="form-control m-1" id="ConfirmPassword" placeholder="ConfirmPassword">
+      <div class="alert alert-warning" *ngIf="this.userForm.get('confirmPassword')?.errors &&this.userForm.get('confirmPassword')?.touched">
+        required
+      </div>
+      <div class="alert alert-warning" *ngIf="this.userForm.errors?.['unMatchedControl']">
+        Not Match
+      </div>
+    </div>
+    <div class="form-check m-3">
+      <input type="checkbox" name="exampleCheck1"  class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label m-1" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="this.userForm.invalid">Submit</button>
+    <div class="alert alert-primary mt-3" role="alert">
+          {{userForm.get('userName')?.value}}
+    </div>
+    <div class="btn-login mt-3">
+    <a  href="Login" class="btn btn-success">Login</a>
+    </div>
+  </form>
+</div>

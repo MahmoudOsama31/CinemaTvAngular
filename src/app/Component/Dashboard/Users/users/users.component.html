@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="alert alert-primary" role="alert">
+        <strong>Users List</strong>
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>UserName</th>
+                    <th>Email</th>
+                    <th>PhoneNumber</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody *ngIf="users!=null">
+                <tr *ngFor="let item of users">
+                    <td scope="row">{{item.userName}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.phoneNumber}}</td>
+                    <td>
+                        <div>
+                            <button type="button" class="btn btn-primary btn-sm" (click)="EditUserClick(item.id)">Edit</button>
+                        </div>
+                    </td>
+                    <td [hidden]="item.userName == 'Admin'">
+                       <!-- <button type="button" class="btn btn-danger"(click)="DeleteUser(item.id)">Delete</button>-->
+                       <button type="button" (click)="Showthis(item.id)"class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Delete
+                    </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- Button trigger modal -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Do you sure for deleted ?!!
+        </div>
+        <div class="modal-footer" *ngFor="let item of users" [hidden]="item.userName == 'Admin'">
+        <div *ngIf="userId==item.id">
+          <button id="btnClose" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" (click)="DeleteUser(item.id)">Delete {{item.userName}}</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>

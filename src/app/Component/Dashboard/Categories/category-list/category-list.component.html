@@ -1,0 +1,46 @@
+<div class="user-role">
+    <button type="button" class="btn btn-success mb-3" (click)="AddCategory()">Add Category</button>
+    <table class="table table-light rounded">
+<thead>
+    <tr class="bg-dark text-light">
+        <th>Category Name</th>
+        <th></th>
+        <th></th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let cat of categories">
+        <td scope="row">{{cat.categoryName}}</td>
+        <td>
+            <button class="btn btn-primary btn-sm" (click)="EditCategory(cat.id,cat.categoryName)">Edit</button>
+        </td>
+        <td>
+            <!-- <button type="button" class="btn btn-danger"(click)="DeleteUser(item.id)">Delete</button>-->
+            <button type="button" (click)="Showthis(cat.id)"class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+             Delete
+         </button>
+         </td>
+    </tr>
+</tbody>
+    </table>
+</div>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Do you sure for deleted ?!!
+        </div>
+        <div class="modal-footer" *ngFor="let item of categories">
+        <div *ngIf="categoryId==item.id">
+          <button id="btnClose" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" (click)="DeleteCategory(item.id)">Delete {{item.categoryName}}</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>

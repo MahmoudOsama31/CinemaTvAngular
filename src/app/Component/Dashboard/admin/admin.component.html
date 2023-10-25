@@ -1,0 +1,73 @@
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Cinema Dashboard</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <p>Cinema:-</p>
+            <li class="active m-3">
+                <a class="btn btn-light" (click)="CheckUser()">Users List</a>
+            </li>
+            <li class="active m-3">
+                <a class="btn btn-light" (click)="UserRole()">UserRoles</a>
+            </li>
+            <li class="active m-3">
+                <a class="btn btn-light" (click)="Category()">Categories</a>
+            </li>
+            <li class="active m-3">
+                <a class="btn btn-light" (click)="SubCategory()">Sub Categories</a>
+            </li>
+            <li class="active m-3">
+                <a class="btn btn-light" (click)="Actor()">Actors</a>
+            </li>
+            <li class="active m-3">
+                <a class="btn btn-light" (click)="Movie()">Movies</a>
+            </li>
+            <li class="active m-3">
+                <a class="btn btn-light" (click)="MovieLinks()">MovieLinks</a>
+            </li>
+            <li class="active m-3">
+                <a class="btn btn-light" (click)="MovieActors()">MovieActors</a>
+            </li>
+        </ul>
+    </nav>
+   <!-- Page Content  -->
+    <div id="content">
+        <h4 class="m-3">لوحة التحكم</h4>
+        <hr>
+        <div class="container main-panel">
+            <div *ngIf="isUserList">
+                <div>
+                    <button type="button" class="btn btn-success m-3" (click)="CheckAddUser()">Add new user</button>
+                </div>
+                <app-users></app-users>
+            </div>
+            <div  *ngIf="isAddUser">
+                <app-add-user></app-add-user>
+            </div>
+            <div  *ngIf="isUserRole">
+                <app-user-roles></app-user-roles>
+            </div>
+            <div  *ngIf="isCategory">
+                <app-category-list></app-category-list>
+            </div>
+            <div  *ngIf="isSubCategory">
+                <app-sub-category></app-sub-category>
+            </div>
+            <div  *ngIf="isActor">
+                <app-actor-list></app-actor-list>
+            </div>
+            <div  *ngIf="isMovie">
+                <app-movie-list></app-movie-list>
+            </div>
+            <div  *ngIf="isMovieLink">
+                <app-movie-link-list></app-movie-link-list>
+            </div>
+            <div  *ngIf="isMovieActor">
+                <app-movie-actor-list></app-movie-actor-list>
+            </div>
+        </div>
+    </div>
+</div>

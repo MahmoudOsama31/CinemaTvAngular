@@ -1,0 +1,61 @@
+<form [formGroup]="formSearch" (ngSubmit)="onSearch()">
+  <div class="row mb-3 mr-0 ml-0">
+      <input type="text" class="form-control col-md-5 mb-3" formControlName="search" placeholder="البحث ....">
+      <button type="submit" class="btn btn-primary col-md-1">
+          <i class="fa fa-search"></i>
+      </button>
+  </div>
+</form>
+<div class="" *ngIf="movies.length > 0">
+    <button type="button" class="btn btn-success mb-3" (click)="AddMovie()">Add Movie</button>
+    <table class="table table-light rounded">
+<thead>
+    <tr class="bg-dark text-light">
+        <th>Movie Name</th>
+        <th>Movie Category</th>
+        <th></th>
+        <th></th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let mov of movies">
+        <td scope="row">{{mov.movieName}}</td>
+        <td scope="row">{{mov.subCategory.subCategoryName}}</td>
+        <td>
+            <button class="btn btn-primary btn-sm" (click)="EditMovie(mov.id)">Edit</button>
+        </td>
+        <td>
+            <button type="button" (click)="Showthis(mov.id)"class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+             Delete
+         </button>
+         </td>
+    </tr>
+</tbody>
+    </table>
+</div>
+<div class="" *ngIf="movies.length < 1">
+  <div class="alert alert-primary" role="alert">
+      <strong>لا يوجد بيانات بالوقت الحالي</strong>
+      <button type="button" class="btn btn-dark mr-4" (click)="GetAllMovies()">تحديث القائمة</button>
+  </div>
+</div>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Do you sure for deleted ?!!
+        </div>
+        <div class="modal-footer" *ngFor="let item of movies">
+        <div *ngIf="movieId==item.id">
+          <button id="btnClose" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" (click)="DeleteMovie(item.id)">Delete {{item.movieName}}</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>

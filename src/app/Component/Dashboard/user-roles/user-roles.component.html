@@ -1,0 +1,20 @@
+<div class="user-role">
+    <table class="table table-light rounded">
+<thead>
+    <tr class="bg-dark text-light">
+        <th>User name</th>
+        <th>Role</th>
+        <th></th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let userRole of userRoles">
+        <td scope="row">{{userRole.userName}}</td>
+        <td>{{userRole.roleName}}</td>
+        <td>
+            <button class="btn btn-primary btn-sm" (click)="EditUserRole(userRole.userId,userRole.roleId)">Edit</button>
+        </td>
+    </tr>
+</tbody>
+    </table>
+</div>

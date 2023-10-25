@@ -1,0 +1,23 @@
+<div class="container mt-4 mb-4">
+    <div>
+      <h5>{{title}}</h5>
+    </div>
+    <hr>
+  <hr>
+    <form [formGroup]="userForm" (ngSubmit)="AddCategory()">
+      <div class="form-group m-3">
+        <label for="username">Category Name</label>
+        <input type="text" name="categoryName" formControlName="categoryName" class="form-control m-1" id="categoryName"
+          placeholder="Enter categoryName" [ngClass]="{'is-invalid' :
+          this.userForm.get('categoryName')?.invalid && this.userForm.get('categoryName')?.touched}">
+          <div class="text-danger" *ngIf="this.userForm.get('categoryName')?.invalid &&
+          this.userForm.get('categoryName')?.touched && this.userForm.get('categoryName')?.value === ''">
+          {{messageValidate.categoryName.required}}
+      </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="this.userForm.invalid">Submit</button>
+      <div class="alert alert-primary mt-3" role="alert">
+        {{userForm.get('categoryName')?.value}}
+      </div>
+    </form>
+  </div>
